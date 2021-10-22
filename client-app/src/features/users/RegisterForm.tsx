@@ -38,4 +38,4 @@ export default observer(function RegisterForm() {
             )}
         </Formik>
     )
-}) 
+})

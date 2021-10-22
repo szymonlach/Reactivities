@@ -4,7 +4,7 @@ import CommonStore from "./commonStore";
 import ModalStore from "./modalStore";
 import UserStore from "./userStore";
 
-interface Store{
+interface Store {
     activityStore: ActivityStore;
     commonStore: CommonStore;
     userStore: UserStore;
@@ -20,6 +20,6 @@ export const store: Store = {
 
 export const StoreContext = createContext(store);
 
-export function useStore(){
+export function useStore() {
     return useContext(StoreContext);
 }
