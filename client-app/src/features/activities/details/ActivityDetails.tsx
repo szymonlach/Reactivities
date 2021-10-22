@@ -19,7 +19,7 @@ export default observer(function ActivityDetails() {
 
     useEffect(() => {
         if (id) activityStore.loadActivity(id);
-    }, [id, activityStore.loadActivity])
+    }, [id, activityStore.loadActivity, activityStore])
 
     if (activityStore.loadingInitial || !activityStore.selectedActivity) return <LoadingComponent />
 
@@ -31,7 +31,7 @@ export default observer(function ActivityDetails() {
                 <ActivityDetailedChat />
             </Grid.Column>
             <Grid.Column width={6}>
-                <ActivityDetailedSidebar />
+                <ActivityDetailedSidebar activity={selectedActivity!}/>
             </Grid.Column>
         </Grid>
     )
