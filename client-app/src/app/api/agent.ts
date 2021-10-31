@@ -80,7 +80,8 @@ const Account = {
 }
 
 const Profiles = {
-    getProfile: (username: string) => requests.get<Profile>(`/profiles/${username}`)
+    getProfile: (username: string) => requests.get<Profile>(`/profiles/${username}`),
+    editProfile: (profile : Partial<Profile>) => requests.put<void>('/profiles', profile)
 }
 
 const Photos = {
