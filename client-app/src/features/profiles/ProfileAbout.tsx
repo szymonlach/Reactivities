@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
-import { Button, Grid, Header, Tab, TextArea } from "semantic-ui-react";
+import { Button, Grid, Header, Tab } from "semantic-ui-react";
 import { Profile } from "../../app/models/profile";
 import { useStore } from "../../app/stores/store";
 import ProfileEditForm from "./ProfileEditForm";
