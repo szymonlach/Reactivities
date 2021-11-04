@@ -81,7 +81,9 @@ const Account = {
 
 const Profiles = {
     getProfile: (username: string) => requests.get<Profile>(`/profiles/${username}`),
-    editProfile: (profile : Partial<Profile>) => requests.put<void>('/profiles', profile)
+    editProfile: (profile : Partial<Profile>) => requests.put<void>('/profiles', profile),
+    updateFollowing: (username: string) => requests.post(`/follow/${username}`, {}),
+    listFollowings: (username: string, predicate: string) => requests.get<Profile[]>(`/follow/${username}?predicate=${predicate}`)
 }
 
 const Photos = {
