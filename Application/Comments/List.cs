@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
+using Application.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -23,8 +24,10 @@ namespace Application.Comments
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
-            public Handler(DataContext context, IMapper mapper)
+            private readonly IUserAccessor _userAccessor;
+            public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor)
             {
+                _userAccessor = userAccessor;
                 _mapper = mapper;
                 _context = context;
             }
@@ -34,7 +37,7 @@ namespace Application.Comments
                 var comments = await _context.Comments
                 .Where(x => x.Activity.Id == request.ActivityId)
                 .OrderByDescending(x => x.CreateAt)
-                .ProjectTo<CommentDto>(_mapper.ConfigurationProvider)
+                .ProjectTo<CommentDto>(_mapper.ConfigurationProvider, new { currentUsername = _userAccessor.GetUsername() })
                 .ToListAsync();
 
                 return Result<List<CommentDto>>.Success(comments);
